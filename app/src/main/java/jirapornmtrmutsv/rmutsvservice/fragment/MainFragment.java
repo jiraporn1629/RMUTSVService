@@ -31,9 +31,18 @@ public class MainFragment extends Fragment{
             @Override
             public void onClick(View view) {
 
-            }
-        });
-    }
+//                Replace Fragment
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contentFragmentMain, new RejisterFragment())
+                        .addToBackStack(null)
+                        .commit();
+
+
+         }
+// Onclick
+            });
+
+        }
 
     @Nullable
     @Override
