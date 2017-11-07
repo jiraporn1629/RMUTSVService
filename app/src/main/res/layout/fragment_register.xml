@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--Toolbar-->
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:id="@+id/toolbarRegister">
+
+
+        <!--Icon-->
+        <ImageView
+            android:id="@+id/imvSave"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="right"
+            android:src="@drawable/action_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.Toolbar>
+
+
+    <!--Content-->
+        <LinearLayout
+            android:background="#b4ffffff"
+            android:padding="@dimen/margin"
+            android:layout_margin="@dimen/margin"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--Name-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--Icon-->
+                <ImageView
+                    android:src="@drawable/ic_action_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <!--TextField-->
+                <EditText
+                    android:inputType="text"
+                    android:hint="@string/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <!--Category-->
+            <RadioGroup
+                android:padding="16dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--Buyer-->
+                <RadioButton
+                    android:text="Buyer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></RadioButton>
+
+                <!--saleser-->
+                <RadioButton
+                    android:text="Saleser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></RadioButton>
+
+
+            </RadioGroup>
+
+
+            <!--User-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--Icon-->
+                <ImageView
+                    android:src="@drawable/ic_action_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <!--TextField-->
+                <EditText
+                    android:inputType="text"
+                    android:hint="@string/user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+            <!--Password-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--Icon-->
+                <ImageView
+                    android:src="@drawable/ic_action_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <!--TextField-->
+                <EditText
+                    android:inputType="text"
+                    android:hint="@string/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+</LinearLayout>
