@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import android.widget.RadioGroup;
 import jirapornmtrmutsv.rmutsvservice.MainActivity;
 import jirapornmtrmutsv.rmutsvservice.R;
 import jirapornmtrmutsv.rmutsvservice.utility.MyAlert;
+import jirapornmtrmutsv.rmutsvservice.utility.MyConstant;
+import jirapornmtrmutsv.rmutsvservice.utility.UploadNewUser;
 
 /**
  * Created by lenovo on 7/11/2560.
@@ -87,11 +90,29 @@ public class RejisterFragment extends Fragment{
                     myAlert.myDialog("Non Choose Category", "Plese Choose Category");
                 } else {
 //                    Choosed Choice
+                    uploadUserToServer();
+
                 }
 
 
             }//onClick
         });
+    }
+
+    private void uploadUserToServer() {
+        String tag = "8novV1";
+        try {
+
+            MyConstant myConstant = new MyConstant();
+            UploadNewUser uploadNewUser = new UploadNewUser(getActivity());
+            UploadNewUser.execute(nameString, categoryString,userString,passwordString, myConstant.getUrlPostData());
+            String result = uploadNewUser.get();
+            Log.d("Result ==> " + result)
+
+        } catch (Exception e) {
+            Log.d(tag, "e ==> " + e.toString());
+        }
+
     }
 
     private void toolbarController() {
