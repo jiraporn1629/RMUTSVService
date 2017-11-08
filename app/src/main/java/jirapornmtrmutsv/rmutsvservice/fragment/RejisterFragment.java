@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import jirapornmtrmutsv.rmutsvservice.MainActivity;
 import jirapornmtrmutsv.rmutsvservice.R;
@@ -105,9 +106,18 @@ public class RejisterFragment extends Fragment{
 
             MyConstant myConstant = new MyConstant();
             UploadNewUser uploadNewUser = new UploadNewUser(getActivity());
-            UploadNewUser.execute(nameString, categoryString,userString,passwordString, myConstant.getUrlPostData());
+            uploadNewUser.execute(nameString, categoryString,userString,passwordString, myConstant.getUrlPostData());
             String result = uploadNewUser.get();
-            Log.d("Result ==> " + result)
+            Log.d(tag,"Result ==> " + result);
+            if (Boolean.parseBoolean(result)) {
+//                Success Upload
+                getActivity().getSupportFragmentManager().popBackStack();
+                Toast.makeText(getActivity(),"Success Upload User", Toast.LENGTH_SHORT).show();
+
+            } else {
+//                Error Upload
+                Toast.makeText(getActivity(),"Cannot Upload User", Toast.LENGTH_SHORT).show();
+            }
 
         } catch (Exception e) {
             Log.d(tag, "e ==> " + e.toString());

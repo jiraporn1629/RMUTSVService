@@ -5,7 +5,13 @@ package jirapornmtrmutsv.rmutsvservice.utility;
  */
 
 public class MyConstant {
-    private String urlPostData = "http://androidthai.in.th/rmuts/addDataJiraporn.php";
+    private String urlPostData = "http://androidthai.in.th/rmuts/addDataMaster.php";
+
+    private String urlGetAllUser = "http://androidthai.in.th/rmuts/getAllDataJiraporn.php";
+
+    public String getUrlGetAllUser() {
+        return urlGetAllUser;
+    }
 
     public String getUrlPostData() {
         return urlPostData;
