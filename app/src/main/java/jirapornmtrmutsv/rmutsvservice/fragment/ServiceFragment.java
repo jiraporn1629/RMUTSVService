@@ -1,5 +1,7 @@
 package jirapornmtrmutsv.rmutsvservice.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,13 +10,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import jirapornmtrmutsv.rmutsvservice.MyServiceActivity;
 import jirapornmtrmutsv.rmutsvservice.R;
+import jirapornmtrmutsv.rmutsvservice.utility.DeleteData;
 import jirapornmtrmutsv.rmutsvservice.utility.GetAllData;
 import jirapornmtrmutsv.rmutsvservice.utility.ListViewAdapter;
 import jirapornmtrmutsv.rmutsvservice.utility.MyConstant;
@@ -63,7 +68,7 @@ public class ServiceFragment extends Fragment{
             String resultJSON = getAllData.get();
             Log.d("9novV1", "JSON ==>  " + resultJSON);
             JSONArray jsonArray = new JSONArray(resultJSON);
-            String[] nameString = new String[jsonArray.length()];
+            final String[] nameString = new String[jsonArray.length()];
             String[] catString = new String[jsonArray.length()];
             String[] userString = new String[jsonArray.length()];
             String[] passwordString = new String[jsonArray.length()];
@@ -83,6 +88,14 @@ public class ServiceFragment extends Fragment{
                     nameString, catString, userString, passwordString);
             listView.setAdapter(listViewAdapter);
 
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    confirmDialog(nameString[i]);
+                }
+            });
+
+
 
         } catch (Exception e) {
 
@@ -92,6 +105,44 @@ public class ServiceFragment extends Fragment{
 
 
 
+
+
+    }
+
+    private void confirmDialog(final String nameString) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setIcon(R.drawable.ic_action_alert);
+        builder.setTitle("You Choose" + nameString);
+        builder.setMessage("Who do You want ? ");
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                deleteDataWhere(nameString);
+
+            dialogInterface.dismiss();
+            }
+        });
+
+
+    }
+
+    private void deleteDataWhere(String nameString) {
+        try {
+            MyConstant myConstant = new MyConstant();
+            DeleteData deleteData = new DeleteData(getActivity());
+            deleteData.execute(nameString, myConstant.getUrlDelete());
+            if (Boolean.parseBoolean(deleteData.get())) {
+                Toast.makeText(getActivity(), "Delete Success",Toast.LENGTH_SHORT).show();
+
+            } else {
+                Toast.makeText(getActivity(), "Delete Error",Toast.LENGTH_SHORT).show();
+            }
+                createListView();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
