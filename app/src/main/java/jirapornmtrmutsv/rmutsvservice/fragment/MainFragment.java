@@ -16,6 +16,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import jirapornmtrmutsv.rmutsvservice.MyServiceActivity;
 import jirapornmtrmutsv.rmutsvservice.R;
 import jirapornmtrmutsv.rmutsvservice.SalerActivity;
 import jirapornmtrmutsv.rmutsvservice.utility.GetAllData;
@@ -100,16 +101,10 @@ public class MainFragment extends Fragment{
             } else if (passwordString.equals(userStrings1[4])) {
                 Toast.makeText(getActivity(),"Welcom " + userStrings1[1],Toast.LENGTH_SHORT).show();
 
-                if (userStrings1[2].equals("Saler")) {
-                    //Saler
-                    Intent intent = new Intent(getActivity(), SalerActivity.class);
-                    intent.putExtra("Login", userStrings1);
-                    getActivity().startActivity(intent);
-
-                } else {
-                    //Buyer
-                }
-
+                Intent intent = new Intent(getActivity(), MyServiceActivity.class);
+                intent.putExtra("Login", userStrings1);
+                getActivity().startActivity(intent);
+                getActivity().finish();
 
 
             } else {
